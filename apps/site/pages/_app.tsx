@@ -9,11 +9,6 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to site!</title>
       </Head>
       <div className="app">
-        <header className="flex">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/nx-logo-white.svg" alt="Nx logo" width="75" height="50" />
-          <h1>Welcome to site!</h1>
-        </header>
         <main>
           <Component {...pageProps} />
         </main>
