@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {
     "@nrwl/next": "12.9.0",
+    "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^10.3.4",
     "core-js": "^3.6.5",
     "next": "11.1.0",
