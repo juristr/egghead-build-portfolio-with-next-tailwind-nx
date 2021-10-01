@@ -2,6 +2,7 @@ import { readdirSync } from 'fs';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
+import { getParsedFileContentBySlug, renderMarkdown } from '@juridev/markdown';
 
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
@@ -21,6 +22,15 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async ({
 }: {
   params: ArticleProps;
 }) => {
+  // 1. parse the content of our markdown and separate it into frontmatter and content
+  const articleMarkdownContent = getParsedFileContentBySlug(
+    params.slug,
+    POSTS_PATH
+  );
+
+  // 2. convert markdown content => HTML
+  const renderHTML = renderMarkdown();
+
   return {
     props: {
       slug: params.slug,
