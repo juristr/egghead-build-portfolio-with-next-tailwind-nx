@@ -4,7 +4,7 @@ import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import { getParsedFileContentBySlug, renderMarkdown } from '@juridev/markdown';
 import { MDXRemote } from 'next-mdx-remote';
-import { Youtube } from '@juridev/shared/mdx-elements';
+import { Youtube, CustomLink } from '@juridev/shared/mdx-elements';
 
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
@@ -12,6 +12,7 @@ export interface ArticleProps extends ParsedUrlQuery {
 
 const mdxElements = {
   Youtube,
+  a: CustomLink,
 };
 
 const POSTS_PATH = join(process.cwd(), '_articles');
