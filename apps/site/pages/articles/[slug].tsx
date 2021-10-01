@@ -17,7 +17,7 @@ const mdxElements = {
   // a: CustomLink,
 };
 
-const POSTS_PATH = join(process.cwd(), '_articles');
+const POSTS_PATH = join(process.cwd(), process.env.articleMarkdownPath);
 
 export function Article({ frontMatter, html }) {
   return (
