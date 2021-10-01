@@ -10,11 +10,13 @@
       "$default": {
         "$source": "argv",
         "index": 0
-      }
+      },
+      "x-prompt": "What's the title of your new article?"
     },
     "author": {
       "type": "string",
-      "description": "The author of the article"
+      "description": "The author of the article",
+      "x-prompt": "What's the name of the author?"
     },
 
     "excerpt": {
