@@ -10,10 +10,13 @@ export interface ArticleProps extends ParsedUrlQuery {
 
 const POSTS_PATH = join(process.cwd(), '_articles');
 
-export function Article(props: ArticleProps) {
+export function Article({ frontMatter }) {
   return (
-    <div>
-      <h1>Visiting, {props.slug}</h1>
+    <div className="m-6">
+      <article className="prose prose-lg">
+        <h1>{frontMatter.title}</h1>
+        <div>by {frontMatter.author.name}</div>
+      </article>
     </div>
   );
 }
@@ -33,7 +36,7 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async ({
 
   return {
     props: {
-      slug: params.slug,
+      frontMatter: articleMarkdownContent.frontMatter,
     },
   };
 };
