@@ -10,6 +10,10 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+
+  env: {
+    articleMarkdownPath: '_articles',
+  },
 };
 
 module.exports = withNx(nextConfig);
