@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import { getParsedFileContentBySlug, renderMarkdown } from '@juridev/markdown';
+import { MDXRemote } from 'next-mdx-remote';
 
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
@@ -10,13 +11,15 @@ export interface ArticleProps extends ParsedUrlQuery {
 
 const POSTS_PATH = join(process.cwd(), '_articles');
 
-export function Article({ frontMatter }) {
+export function Article({ frontMatter, html }) {
   return (
     <div className="m-6">
       <article className="prose prose-lg">
         <h1>{frontMatter.title}</h1>
         <div>by {frontMatter.author.name}</div>
       </article>
+      <hr />
+      <MDXRemote {...html} />
     </div>
   );
 }
@@ -32,11 +35,12 @@ export const getStaticProps: GetStaticProps<ArticleProps> = async ({
   );
 
   // 2. convert markdown content => HTML
-  const renderHTML = renderMarkdown();
+  const renderHTML = await renderMarkdown(articleMarkdownContent.content);
 
   return {
     props: {
       frontMatter: articleMarkdownContent.frontMatter,
+      html: renderHTML,
     },
   };
 };

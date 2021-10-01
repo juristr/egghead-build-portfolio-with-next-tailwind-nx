@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
 
+import { serialize } from 'next-mdx-remote/serialize';
+
 export function getParsedFileContentBySlug(
   fileName: string,
   postsPath: string
@@ -17,6 +19,6 @@ export function getParsedFileContentBySlug(
   };
 }
 
-export function renderMarkdown(): string {
-  return 'markdown';
+export function renderMarkdown(markdownContent: string) {
+  return serialize(markdownContent || '');
 }
