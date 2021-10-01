@@ -4,10 +4,15 @@ import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import { getParsedFileContentBySlug, renderMarkdown } from '@juridev/markdown';
 import { MDXRemote } from 'next-mdx-remote';
+import { Youtube } from '@juridev/shared/mdx-elements';
 
 export interface ArticleProps extends ParsedUrlQuery {
   slug: string;
 }
+
+const mdxElements = {
+  Youtube,
+};
 
 const POSTS_PATH = join(process.cwd(), '_articles');
 
@@ -19,7 +24,7 @@ export function Article({ frontMatter, html }) {
         <div>by {frontMatter.author.name}</div>
       </article>
       <hr />
-      <MDXRemote {...html} />
+      <MDXRemote {...html} components={mdxElements} />
     </div>
   );
 }
