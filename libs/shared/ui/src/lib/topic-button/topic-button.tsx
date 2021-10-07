@@ -34,10 +34,13 @@ export function TopicButton(props: TopicButtonProps) {
     <div
       className="bg-white pl-4 rounded-lg shadow flex max-w-md min-w-max hover:shadow-md transition-shadow"
       onClick={onClickHandler}
+      data-testid="topicButton"
     >
       <img src={icon} alt="" className="w-12" />
       <div className="p-5">
-        <h2 className="font-bold text-4xl">{props.topicName}</h2>
+        <h2 className="font-bold text-4xl" data-testid="topicName">
+          {props.topicName}
+        </h2>
       </div>
     </div>
   );
