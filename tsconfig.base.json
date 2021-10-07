@@ -17,7 +17,8 @@
     "paths": {
       "@juridev/markdown": ["libs/markdown/src/index.ts"],
       "@juridev/shared/mdx-elements": ["libs/shared/mdx-elements/src/index.ts"],
-      "@juridev/shared/mdx-elements/*": ["libs/shared/mdx-elements/src/lib/*"]
+      "@juridev/shared/mdx-elements/*": ["libs/shared/mdx-elements/src/lib/*"],
+      "@juridev/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
