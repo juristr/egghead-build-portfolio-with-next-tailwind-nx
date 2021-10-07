@@ -6,7 +6,13 @@ export default {
   title: 'TopicButton',
 } as Meta;
 
-const Template: Story<TopicButtonProps> = (args) => <TopicButton {...args} />;
+const Template: Story<TopicButtonProps> = (args) => {
+  return (
+    <div className="bg-gray-300 p-20">
+      <TopicButton {...args} />
+    </div>
+  );
+};
 
 export const Primary = Template.bind({});
 Primary.args = {};
