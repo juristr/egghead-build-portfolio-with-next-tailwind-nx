@@ -1,5 +1,5 @@
 import { readdirSync } from 'fs';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import { getParsedFileContentBySlug, renderMarkdown } from '@juridev/markdown';
@@ -19,7 +19,10 @@ const mdxElements = {
 
 const POSTS_PATH = join(process.cwd(), process.env.articleMarkdownPath);
 
-export function Article({ frontMatter, html }) {
+export function Article({
+  frontMatter,
+  html,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className="m-6">
       <article className="prose prose-lg">
@@ -31,11 +34,8 @@ export function Article({ frontMatter, html }) {
     </div>
   );
 }
-export const getStaticProps: GetStaticProps<ArticleProps> = async ({
-  params,
-}: {
-  params: ArticleProps;
-}) => {
+
+export const getStaticProps = async ({ params }: { params: ArticleProps }) => {
   // 1. parse the content of our markdown and separate it into frontmatter and content
   const articleMarkdownContent = getParsedFileContentBySlug(
     params.slug,
