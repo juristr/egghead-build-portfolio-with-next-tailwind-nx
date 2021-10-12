@@ -4,6 +4,8 @@ import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
 import { TopicButton } from '@juridev/shared/ui';
 
+console.log('some change');
+
 export function App() {
   return (
     <div className={styles.app}>
