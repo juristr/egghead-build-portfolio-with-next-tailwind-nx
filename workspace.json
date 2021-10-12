@@ -23,6 +23,109 @@
         }
       }
     },
+    "reactapp": {
+      "root": "apps/reactapp",
+      "sourceRoot": "apps/reactapp/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/reactapp",
+            "index": "apps/reactapp/src/index.html",
+            "main": "apps/reactapp/src/main.tsx",
+            "polyfills": "apps/reactapp/src/polyfills.ts",
+            "tsConfig": "apps/reactapp/tsconfig.app.json",
+            "assets": [
+              "apps/reactapp/src/favicon.ico",
+              "apps/reactapp/src/assets"
+            ],
+            "styles": ["apps/reactapp/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/reactapp/src/environments/environment.ts",
+                  "with": "apps/reactapp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "reactapp:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "reactapp:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/reactapp/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/reactapp"],
+          "options": {
+            "jestConfig": "apps/reactapp/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "reactapp-e2e": {
+      "root": "apps/reactapp-e2e",
+      "sourceRoot": "apps/reactapp-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/reactapp-e2e/cypress.json",
+            "devServerTarget": "reactapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "reactapp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/reactapp-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "shared-mdx-elements": {
       "root": "libs/shared/mdx-elements",
       "sourceRoot": "libs/shared/mdx-elements/src",
@@ -153,6 +256,12 @@
         }
       }
     },
+    "site-articles": {
+      "root": "_articles",
+      "sourceRoot": "_articles",
+      "projectType": "application",
+      "targets": {}
+    },
     "site-e2e": {
       "root": "apps/site-e2e",
       "sourceRoot": "apps/site-e2e/src",
@@ -213,7 +322,16 @@
   "generators": {
     "@nrwl/react": {
       "application": {
+        "style": "css",
+        "linter": "eslint",
         "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
       }
     },
     "@nrwl/next": {

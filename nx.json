@@ -36,6 +36,13 @@
     "markdown": {
       "tags": []
     },
+    "reactapp": {
+      "tags": []
+    },
+    "reactapp-e2e": {
+      "tags": [],
+      "implicitDependencies": ["reactapp"]
+    },
     "shared-mdx-elements": {
       "tags": []
     },
@@ -43,6 +50,10 @@
       "tags": []
     },
     "site": {
+      "tags": [],
+      "implicitDependencies": ["site-articles"]
+    },
+    "site-articles": {
       "tags": []
     },
     "site-e2e": {
